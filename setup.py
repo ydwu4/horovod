@@ -344,6 +344,7 @@ def get_cuda_dirs(build_ext, cpp_flags):
     cuda_lib_dirs = []
 
     cuda_home = os.environ.get('HOROVOD_CUDA_HOME')
+    print("cuda_home:" + cuda_home)
     if cuda_home:
         cuda_include_dirs += ['%s/include' % cuda_home]
         cuda_lib_dirs += ['%s/lib' % cuda_home, '%s/lib64' % cuda_home]
@@ -356,6 +357,7 @@ def get_cuda_dirs(build_ext, cpp_flags):
     if cuda_lib:
         cuda_lib_dirs += [cuda_lib]
 
+    print(cuda_include_dirs, cuda_lib_dirs)
     if not cuda_include_dirs and not cuda_lib_dirs:
         # default to /usr/local/cuda
         cuda_include_dirs += ['/usr/local/cuda/include']
@@ -532,6 +534,7 @@ def get_common_options(build_ext):
     INCLUDES = ['third_party/eigen',
                 'third_party/lbfgs/include',
                 'third_party/boost/assert/include',
+                'third_party/boost/asio/include',
                 'third_party/boost/config/include',
                 'third_party/boost/core/include',
                 'third_party/boost/detail/include',
